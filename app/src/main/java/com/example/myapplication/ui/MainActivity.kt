@@ -1,9 +1,11 @@
 package com.example.myapplication.ui
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -40,8 +42,16 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Album> {
         }
 
         btnTakePhoto.setOnClickListener {
-            openMediaStore()
+//            openMediaStore()
+            loadDocument()
         }
+    }
+
+    private fun loadDocument(){
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.addCategory( Intent.CATEGORY_OPENABLE)
+        intent.type = "application/pdf"
+        startActivityForResult(intent, OPEN_DIRECTORY_REQUEST_CODE)
     }
 
     private fun openMediaStore() {
@@ -94,6 +104,19 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Album> {
         intent.putExtra(Constant.ALBUM_NAME_KEY, obj.displayName)
         startActivity(intent)
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == OPEN_DIRECTORY_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val directoryUri = data?.data ?: return
+                // Open with `DocumentFile.fromTreeUri`...
+                Log.d("TAG", "onActivityResult: $directoryUri")
+            } else {
+                // The user cancelled the request.
+            }
+        }
+    }
 }
 
 private const val READ_EXTERNAL_STORAGE_REQUEST: Int = 1234
+private const val OPEN_DIRECTORY_REQUEST_CODE   : Int = 1235

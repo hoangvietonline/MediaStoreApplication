@@ -18,15 +18,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
     private val _album = MutableLiveData<List<Album>>()
     private val _image = MutableLiveData<List<MediaStoreImage>>()
+    private val _file = MutableLiveData<List<MediaStoreImage>>()
+
     val album: LiveData<List<Album>> = _album
     val image: LiveData<List<MediaStoreImage>> = _image
+    val file: LiveData<List<MediaStoreImage>> = _file
+
     private var contentObserver: ContentObserver? = null
 
     fun loadAlbum() {
