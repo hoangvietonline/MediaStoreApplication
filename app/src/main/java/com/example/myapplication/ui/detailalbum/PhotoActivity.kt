@@ -10,7 +10,6 @@ import com.example.myapplication.common.Constant
 import com.example.myapplication.model.MediaStoreImage
 import com.example.myapplication.viewmodel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_details_album.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class PhotoActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel

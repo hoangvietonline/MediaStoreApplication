@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener<Album> {
         }
 
         btnTakePhoto.setOnClickListener {
-//            openMediaStore()
-            loadDocument()
+            openMediaStore()
+//            loadDocument()
         }
     }
 

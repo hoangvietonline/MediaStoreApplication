@@ -72,7 +72,8 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
             val projection = arrayOf(
                 MediaStore.Images.Media._ID,
                 MediaStore.Images.Media.DISPLAY_NAME,
-                MediaStore.Images.Media.DATE_ADDED
+                MediaStore.Images.Media.DATE_ADDED,
+                MediaStore.MediaColumns.DATA
             )
 
             val sortOrder = "${MediaStore.Images.Media.DATE_ADDED} DESC"
